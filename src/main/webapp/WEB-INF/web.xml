@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>graduation_project</display-name>
+  <!--配置Spring的配置文件  -->
+  <context-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  <!--配置Spring的监听器  -->
+  <listener>
+  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!--配置SpringMVC的前端控制器  -->
+  <servlet>
+  <servlet-name>springMVC</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  <init-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>classpath:springMVC.xml</param-value>
+  </init-param>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>springMVC</servlet-name>
+  <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/login</welcome-file>
+  </welcome-file-list>
+</web-app>

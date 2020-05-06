@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+        <!--扫描注解类所在包 -->
+	<context:component-scan base-package="com.controller"></context:component-scan>
+	<!--配置视图的路径，前缀和后缀 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/"></property>
+        <property name="suffix" value=".jsp"/>
+		<!-- <constructor-arg name="" value=""></constructor-arg> 
+		 页面的前缀 
+		<property name="prefix" value="/webapp/"></property>
+		页面的后缀
+		<property name="suffix" value=".jsp"></property> -->
+
+	</bean>
+	<!--配置上传文件解析器，必须配置 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--设置上传文件的最大字节数 -->
+		<property name="maxUploadSize" value="#{8*1024*1024}"></property>
+		<!--设置编码格式，文件名 -->
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+
+	<mvc:interceptors>
+		<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+		<mvc:interceptor>
+			<!-- 进行拦截：/**表示拦截所有controller -->
+			<mvc:mapping path="/**" />
+			<!-- 不进行拦截 -->
+			<mvc:exclude-mapping path="/**/*.css"/>
+			<mvc:exclude-mapping path="/**/*.js"/>
+			<mvc:exclude-mapping path="/**/*.jpg"/>
+			<mvc:exclude-mapping path="/"/>
+			<mvc:exclude-mapping path="/checkLogin"/>
+			<bean class="com.course.interceptor.JWTInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+    <bean id="exceptionResolver" class="com.course.exception.OverallExceptionResolver"></bean>
+	<!--配置注解驱动 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+	<!--解决SpringMVC的url-pattern的/拦截静态资源的问题 -->
+	<mvc:default-servlet-handler />
+	</beans>
