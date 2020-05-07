@@ -20,26 +20,27 @@ public class PresenceController {
     PresenceService presenceService;
 
     @RequestMapping("/savePresence")
-    public ModelAndView savePresence(HttpServletRequest request,ModelAndView modelAndView){
+    public int savePresence(HttpServletRequest request,ModelAndView modelAndView){
         Presence presence = new Presence();
-        presenceService.savePresence(presence);
-        List<Presence> presenceList = presenceService.getPresenceList();
-        modelAndView.addObject("presenceList",presenceList);
-        modelAndView.setViewName("");
-        return modelAndView;
+        presence.setPresencename(request.getParameter("presenceName"));
+        presence.setPresencecontent(request.getParameter("presenceContent"));
+        presence.setActivename(request.getParameter("activityName"));
+        presence.setVolunteername(request.getParameter("volunteerName"));
+        presence.setPresenceimgpath(request.getParameter("imgPath"));
+        int result = presenceService.savePresence(presence);
+        return result;
     }
 
     @RequestMapping("/showPresence")
     public ModelAndView showPresence(ModelAndView modelAndView){
         List<Presence> presenceList = presenceService.getPresenceList();
         modelAndView.addObject("presenceList",presenceList);
-        modelAndView.setViewName("");
+        modelAndView.setViewName("/Admin/showPresence");
         return modelAndView;
     }
 
     @RequestMapping("/updatePresence")
-    public int updatePresence(HttpServletRequest request){
-        Presence presence = new Presence();
+    public int updatePresence(Presence presence){
         int result  = presenceService.updatePresence(presence);
         return result;
     }

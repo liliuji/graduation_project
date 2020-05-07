@@ -7,9 +7,19 @@ public class Presence {
 
     private String presencecontent;
 
-    private Integer volunteerid;
+    private String volunteername;
 
-    private Integer activeid;
+    private String activename;
+
+    private String presenceimgpath;
+
+    public String getPresenceimgpath() {
+        return presenceimgpath;
+    }
+
+    public void setPresenceimgpath(String presenceimgpath) {
+        this.presenceimgpath = presenceimgpath;
+    }
 
     public Integer getPresenceid() {
         return presenceid;
@@ -35,19 +45,19 @@ public class Presence {
         this.presencecontent = presencecontent == null ? null : presencecontent.trim();
     }
 
-    public Integer getVolunteerid() {
-        return volunteerid;
+    public String getVolunteername() {
+        return volunteername;
     }
 
-    public void setVolunteerid(Integer volunteerid) {
-        this.volunteerid = volunteerid;
+    public void setVolunteername(String volunteername) {
+        this.volunteername = volunteername;
     }
 
-    public Integer getActiveid() {
-        return activeid;
+    public String getActivename() {
+        return activename;
     }
 
-    public void setActiveid(Integer activeid) {
-        this.activeid = activeid;
+    public void setActivename(String activename) {
+        this.activename = activename;
     }
 }

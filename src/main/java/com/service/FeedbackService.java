@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FeedbackService {
 
-    int updateFeedback(String feedbackReply, String replyDate, int feedbackId);
+    int updateFeedback(Feedback feedback);
 
     int deleteFeeback( int feedbackId);
 

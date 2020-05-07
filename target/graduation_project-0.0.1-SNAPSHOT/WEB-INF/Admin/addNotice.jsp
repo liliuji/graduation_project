@@ -50,6 +50,14 @@
         padding: 0.2rem 0.4rem;
         }
     </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var resultMsg = '${resultMsg}';
+            if(resultMsg!=''&&resultMsg!=null){
+                alert(resultMsg);
+            }
+        });
+    </script>
     <title>添加公告</title>
 </head>
 <body>
@@ -57,13 +65,13 @@
     <div class="form-group">
         <label for="noticeTitle" class="col-sm-2 control-label">标题</label>
         <div class="col-sm-7">
-            <input type="text" class="form-control" id="noticeTitle" name="noticeTitle" placeholder="请输入公告标题">
+            <input type="text" class="form-control" id="noticetitle" name="noticetitle" placeholder="请输入公告标题">
         </div>
     </div>
     <div class="form-group">
         <label for="noticeContent" class="col-sm-2 control-label">内容</label>
         <div class="col-sm-7">
-            <textarea class="form-control" id="noticeContent" name="noticeContent" placeholder="请输入公告内容" ></textarea>
+            <textarea class="form-control" id="noticecontent" name="noticecontent" placeholder="请输入公告内容" ></textarea>
         </div>
     </div>
     <div class="col-sm-3 col-sm-offset-2">

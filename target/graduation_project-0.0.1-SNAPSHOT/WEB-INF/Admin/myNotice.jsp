@@ -52,6 +52,7 @@
             </tr>
         </c:forEach>
         </tbody>
+    </table>
 </div>
 <div class="modal fade" id="lookActivity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -78,5 +79,13 @@
     </div>
 </div>
 <script src="/graduation_project/js/myNotice.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var resultMsg = '${resultMsg}';
+        if(resultMsg!=''&&resultMsg!=null){
+            alert(resultMsg);
+        }
+    });
+</script>
 </body>
 </html>

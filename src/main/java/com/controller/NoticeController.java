@@ -22,19 +22,19 @@ public class NoticeController {
     private NoticeService noticeService;
 
     @RequestMapping("/saveNotice")
-    public ModelAndView saveNotice(HttpServletRequest request,ModelAndView modelAndView)
-            throws UnsupportedEncodingException {
-        String noticeTitle = new String(request.getParameter("noticeTitle").getBytes("iso-8859-1"), "utf-8");
-        String noticeContent = new String(request.getParameter("noticeContent").getBytes("iso-8859-1"), "utf-8");
+    public ModelAndView saveNotice(Notice notice,ModelAndView modelAndView){
         String nowDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        Notice notice = new Notice();
-        notice.setNoticetitle(noticeTitle);
-        notice.setNoticecontent(noticeContent);
         notice.setNoticecreatedate(nowDate);
         int result = noticeService.saveNotice(notice);
-        List<Notice>  noticeList = noticeService.getNoticeList();
-        modelAndView.addObject("noticeList",noticeList);
-        modelAndView.setViewName("/Admin/myNotice");
+        if(result==0){
+            modelAndView.addObject("resultMsg","添加公告失败!");
+            modelAndView.setViewName("/Admin/addNotice");
+        }else{
+            List<Notice>  noticeList = noticeService.getNoticeList();
+            modelAndView.addObject("noticeList",noticeList);
+            modelAndView.addObject("resultMsg","添加公告成功!");
+            modelAndView.setViewName("/Admin/myNotice");
+        }
         return modelAndView;
     }
 

@@ -51,7 +51,7 @@
             padding: 0.2rem 0.4rem;
         }
 	</style>
-<title>添加活动</title>
+<title>添加风采</title>
 </head>
 <body>
 <div id="container" style="display:none;"></div>
@@ -60,7 +60,7 @@
 		<input type="hidden" id="searchlng">
 		<input type="hidden" id="searchlat">
     	 <div class="form-group">
-    	 	<label class="col-sm-2 control-label">活动照片</label>
+    	 	<label class="col-sm-2 control-label">风采照片</label>
             <div class="col-sm-5">
                 <div class="fileinput fileinput-new" data-provides="fileinput" id="uploadImageDiv">
                     <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
@@ -83,74 +83,29 @@
         </form>
         <form id="form" class="form-horizontal" role="form">
 		<div class="form-group">
-    		<label for="Aname" class="col-sm-2 control-label">活动名称</label>
+    		<label for="presenceName" class="col-sm-2 control-label">风采名称</label>
     		<div class="col-sm-7">
-      			<input type="text" class="form-control" id="Aname" placeholder="请输入活动名称">
+      			<input type="text" class="form-control" id="presenceName" placeholder="请输入风采名称">
     		</div>
     	</div>
 		<div class="form-group">
-    		<label for="Adate" class="col-sm-2 control-label">活动日期</label>
+    		<label for="presenceContent" class="col-sm-2 control-label">风采内容</label>
     		<div class="col-sm-7">
-      			<input type="date" class="form-control" id="Adate" placeholder="请输入活动日期">
+				<textarea class="form-control" id="presenceContent" placeholder="请输入风采内容"></textarea>
     		</div>
     	</div>
 		<div class="form-group">
-    		<label for="Address" class="col-sm-2 control-label">活动地址</label>
-    		<div class="col-sm-7">
-      				<input type="text" class="form-control" id="Address" placeholder="请输入活动地址">
-    				<div class="panel panel-default" id="ddd" style="display:none;"></div>
-    		</div>
-    	</div>
-    	<div class="form-group">
-    		<label class="col-sm-2 control-label">报名截止时间</label>
-    		<div class="col-sm-3">
-      			<input type="date" class="form-control" id="AdeadDate" placeholder="">
-    		</div>
-    		<div class="col-sm-1"></div>
-    		<div class="col-sm-3">
-      			<input type="time" class="form-control" id="AdeadTime" placeholder="">
-    		</div>
-    	</div>
-    	<div class="requestGroup">
-			<div class="form-group Atime">
-	    		<label  class="col-sm-2 control-label">活动时间段</label>
-	    		<div class="col-sm-3">
-	      			<input type="time" class="form-control Aintime" id="Aintime" placeholder="">
-	    		</div>
-	    		<div class="col-sm-1  text-center">
-	    			<label class="control-label">至</label>
-	    		</div>
-	    		<div class="col-sm-3">
-	      			<input type="time" class="form-control Aouttime" id="Aouttime" placeholder="">
-	    		</div>
-	    		<%--<div class="col-sm-2 text-center button">
-	    			<button type="button" class="btn btn-primary btn-circle pull-left" id="addTime">
-						<span class="glyphicon glyphicon-plus"></span>
-					</button>
-					<label class="control-label pull-left">&nbsp;增加时间段</label>
-	    		</div>--%>
-	    	</div>
-	    	<div class="form-group Aneed">
-	    		<label  class="col-sm-2 control-label">需求人数</label>
-	    		<div class="col-sm-7">
-	      			<input type="text" class="form-control Apcount" id="Apcount" placeholder="请输入需求人数">
-	    		</div>
-	    		<%--<div class="col-sm-2 text-center button">
-	    			<button type="button" class="btn btn-primary btn-circle pull-left addJob">
-						<span class="glyphicon glyphicon-plus"></span>
-					</button>
-					<label class="control-label pull-left">&nbsp;增加岗位</label>
-	    		</div>--%>
-	    	</div>
-	    	<div class="addJobGroup">
-	    	</div>
-    	</div>
-    	<div class="form-group">
-    		<label for="Arequest" class="col-sm-2 control-label">活动要求</label>
-    		<div class="col-sm-7">
-      			<textarea class="form-control" id="Arequest" placeholder="此处将整则招募信息填入" rows="3"></textarea>
-    		</div>
-    	</div>
+			<label for="activityName" class="col-sm-2 control-label">活动名称</label>
+			<div class="col-sm-7">
+				<input type="text" class="form-control" id="activityName" placeholder="请输入活动名称">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="volunteerName" class="col-sm-2 control-label">志愿者姓名</label>
+			<div class="col-sm-7">
+				<input type="text" class="form-control" id="volunteerName" placeholder="请输入志愿者姓名">
+			</div>
+		</div>
 	</form>
 	<div class="col-sm-3 col-sm-offset-2">
 	<button class="btn btn-info btn-lg btn-block " id="sub">提交</button>
@@ -168,6 +123,6 @@
         </div>
     </div>
 </div>
-	<script src="<%=request.getContextPath()%>/js/addActivity.js"></script>
+	<script src="<%=request.getContextPath()%>/js/addPresence.js"></script>
 </body>
 </html>

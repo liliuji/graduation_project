@@ -31,18 +31,16 @@ public class FeedbackController {
     }
 
     @RequestMapping("/updateFeedback")
-    public int updateFeedback(HttpServletRequest request){
-        String feedbackReply = request.getParameter("feedbackReply");
+    public int updateFeedback(Feedback feedback){
         String replyDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        int feedbackId = NumberUtils.toInt(request.getParameter("feedbackId"));
-        int result = feedbackService.updateFeedback(feedbackReply,replyDate,feedbackId);
+        feedback.setReplydate(replyDate);
+        int result = feedbackService.updateFeedback(feedback);
         return result;
     }
 
     @RequestMapping("/deleteFeeback")
-    public int deleteFeeback(HttpServletRequest request){
-        int feedbackId = NumberUtils.toInt(request.getParameter("feedbackId"));
-        int result = feedbackService.deleteFeeback(feedbackId);
+    public int deleteFeeback(int feedbackid){
+        int result = feedbackService.deleteFeeback(feedbackid);
         return result;
     }
 

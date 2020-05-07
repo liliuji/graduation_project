@@ -22,113 +22,43 @@
 			padding-top:50px;
 		}
 	</style>
-<title>活动信息</title>
+<title>报名信息</title>
 </head>
 <body>
 	<div class="col-sm-10 col-sm-offset-1">
-	<div id="navbar-example">
-		<ul class="nav nav-tabs">
-		    <li class="active"><a data-toggle="tab" href="#ing">正在进行</a></li>
-		    <li><a data-toggle="tab" href="#no">未开始</a></li>
-		    <li><a data-toggle="tab" href="#done">已结束</a></li>
-	  	</ul>
-	</div>
-		<div class="tab-content"  data-spy="scroll" data-target="#navbar-example"data-offset="10" style="overflow:auto; position: relative;margin-top:15px;">
-	    <div id="ing" class="tab-pane fade in active">
-	   <table class="table table-bordered table-hover">
-	  <thead>
-	    <tr>
-		  <th>序号</th>
-	      <th>活动名称</th>
-	      <th>发布人</th>
-	      <th>发布时间</th>
-	      <th>操作</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  <c:forEach items="${underwayList}" var= "activity"  varStatus="status">
-		  <tr>
-			  <td>${status.index + 1}</td>
-			  <td>${activity.activityname}</td>
-			  <td>${activity.byUserName}</td>
-			  <td>${activity.releasetime}</td>
-			  <td>
-				  <a class="tooltip-test" data-toggle="tooltip" title="查看活动">
-					  <span class="glyphicon glyphicon-search look"></span>
-				  </a>
-				  <a class="tooltip-test" data-toggle="tooltip" title="删除活动">
-					  <span class="glyphicon glyphicon-trash delete"></span>
-				  </a>
-			  </td>
-			  <td style="display: none">${activity.activityid}</td>
-		  </tr>
-	  </c:forEach>
-	</tbody>
-	</table>
-	    </div>
-	    <div id="no" class="tab-pane fade">
-	    <table class="table table-bordered table-hover">
-	  <thead>
-	    <tr>
-		  <th>序号</th>
-	      <th>活动名称</th>
-	      <th>发布人</th>
-	      <th>发布时间</th>
-	      <th>操作</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  <c:forEach items="${noStartList}" var= "activity"  varStatus="status">
-		     <tr>
-				 <td>${status.index + 1}</td>
-				 <td>${activity.activityname}</td>
-		   	     <td>${activity.byUserName}</td>
-		 		 <td>${activity.releasetime}</td>
-				 <td>
-					 <a class="tooltip-test" data-toggle="tooltip" title="查看活动">
-						 <span class="glyphicon glyphicon-search look"></span>
-					 </a>
-					 <a class="tooltip-test" data-toggle="tooltip" title="删除活动">
-						 <span class="glyphicon glyphicon-trash delete"></span>
-					 </a>
-				 </td>
-				 <td style="display: none">${activity.activityid}</td>
-	 		 </tr>
-	  </c:forEach>
-	  </tbody>
-	</table>
-	    </div>
-	      <div id="done" class="tab-pane fade">
-	    <table class="table table-bordered table-hover">
-	  <thead>
-	    <tr>
-		  <th>序号</th>
-	      <th>活动名称</th>
-	      <th>发布人</th>
-	      <th>发布时间</th>
-	      <th>操作</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  <c:forEach items="${finishList}" var= "activity"  varStatus="status">
-		  <tr>
-			  <td>${status.index + 1}</td>
-			  <td>${activity.activityname}</td>
-			  <td>${activity.byUserName}</td>
-			  <td>${activity.releasetime}</td>
-			  <td>
-				  <a class="tooltip-test" data-toggle="tooltip" title="查看活动">
-					  <span class="glyphicon glyphicon-search look"></span>
-				  </a>
-				  <a class="tooltip-test" data-toggle="tooltip" title="删除活动">
-					  <span class="glyphicon glyphicon-trash delete"></span>
-				  </a>
-			  </td>
-			  <td style="display: none">${activity.activityid}</td>
-		  </tr>
-	  </c:forEach>
-	  </tbody>
-	</table>
+		<table class="table table-bordered table-hover">
+			<thead>
+			<tr>
+				<th>序号</th>
+				<th>志愿者姓名</th>
+				<th>活动名称</th>
+				<th>报名原因</th>
+				<th>报名日期</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${enlists}" var= "enlist"  varStatus="status">
+				<tr>
+					<td>${status.index + 1}</td>
+					<td>${enlist.presencename}</td>
+					<td>${enlist.presencecontent}</td>
+					<td>${enlist.activename}</td>
+					<td>${enlist.volunteername}</td>
+					<td>
+						<a class="tooltip-test" data-toggle="tooltip" title="修改">
+							<span class="glyphicon glyphicon-search look"></span>
+						</a>
+						<a class="tooltip-test" data-toggle="tooltip" title="删除">
+							<span class="glyphicon glyphicon-trash delete"></span>
+						</a>
+					</td>
+					<td style="display: none">${presence.presenceid}</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
 	    </div>
 	</div>
 	
@@ -144,18 +74,18 @@
 			<div class="modal-footer">
 				<div class="row">
 				<div class="col-sm-2"></div>
-				<div class="col-sm-4 text-center">
-                	<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-				<div class="col-sm-4 text-center">
-                	<button type="button" class="btn btn-primary" id="export">导出名单</button>
-                </div>
+					<div class="col-sm-4 text-center">
+						<button type="button" class="btn btn-primary" id="update">修改</button>
+					</div>
+					<div class="col-sm-4 text-center">
+						<button type="button" class="btn btn-default" data-dismiss="modal" id="close">关闭</button>
+					</div>
 				<div class="col-sm-2"></div>
 				</div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-<script src="/graduation_project/js/myActivity.js"></script>
+<script src="/graduation_project/js/myEnlist.js"></script>
 </body>
 </html>

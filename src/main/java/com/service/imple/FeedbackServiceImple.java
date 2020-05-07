@@ -17,8 +17,8 @@ public class FeedbackServiceImple implements FeedbackService {
     private FeedbackMapper feedbackMapper;
 
     @Override
-    public int updateFeedback(String feedbackReply, String replyDate, int feedbackId) {
-        return feedbackMapper.updateFeedback(feedbackReply,replyDate,feedbackId);
+    public int updateFeedback(Feedback feedback) {
+        return feedbackMapper.updateFeedback(feedback);
     }
 
     @Override

@@ -10,8 +10,8 @@ import java.util.List;
 
 public interface FeedbackMapper {
 
-    @Update("update t_feedback set feedbackReply = #{feedbackReply},replyDate = #{replyDate} where feedbackId = #{feedbackId}")
-    int updateFeedback(@Param("feedbackReply") String feedbackReply, @Param("replyDate") String replyDate, @Param("feedbackId") int feedbackId);
+    @Update("update t_feedback set feedbackReply = #{feedbackreply},replyDate = #{replydate} where feedbackId = #{feedbackid}")
+    int updateFeedback(Feedback feedback);
 
     @Delete("delete from t_feedback where feedbackId = #{feedbackId}")
     int deleteFeeback(@Param("feedbackId") int feedbackId);
