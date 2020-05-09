@@ -24,11 +24,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/")
-    public String login(Model model){
-        return "/Admin/login";
-    }
-
     @RequestMapping("/checkLogin")
     public String checkLogin(User user, HttpSession session, HttpServletRequest request, Model model) throws Exception {
         String userName = user.getUserName();

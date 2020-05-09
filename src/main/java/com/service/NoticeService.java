@@ -12,4 +12,6 @@ public interface NoticeService {
     int updateNotice(String noticeTitle,String noticeContent,int noticeId);
 
     int deleteNotice(int noticeId);
+
+    Notice getNoticeById(int noticeId);
 }

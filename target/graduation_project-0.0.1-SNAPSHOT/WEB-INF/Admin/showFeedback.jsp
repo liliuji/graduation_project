@@ -74,7 +74,7 @@
 				<div class="row">
 				<div class="col-sm-2"></div>
 					<div class="col-sm-4 text-center">
-						<button type="button" class="btn btn-primary" id="update">修改</button>
+						<button type="button" class="btn btn-primary" id="update">回复</button>
 					</div>
 					<div class="col-sm-4 text-center">
 						<button type="button" class="btn btn-default" data-dismiss="modal" id="close">关闭</button>

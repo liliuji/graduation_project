@@ -13,6 +13,26 @@ public class Enlist {
 
     private String enliststatus;
 
+    private String volunteername;
+
+    private String activityname;
+
+    public String getVolunteername() {
+        return volunteername;
+    }
+
+    public void setVolunteername(String volunteername) {
+        this.volunteername = volunteername;
+    }
+
+    public String getActivityname() {
+        return activityname;
+    }
+
+    public void setActivityname(String activityname) {
+        this.activityname = activityname;
+    }
+
     public String getEnliststatus() {
         return enliststatus;
     }

@@ -42,49 +42,32 @@
 			<c:forEach items="${enlists}" var= "enlist"  varStatus="status">
 				<tr>
 					<td>${status.index + 1}</td>
-					<td>${enlist.presencename}</td>
-					<td>${enlist.presencecontent}</td>
-					<td>${enlist.activename}</td>
 					<td>${enlist.volunteername}</td>
+					<td>${enlist.activityname}</td>
+					<td>${enlist.enlistreason}</td>
+					<td>${enlist.enlistdate}</td>
+					<td>${enlist.enliststatus}</td>
 					<td>
-						<a class="tooltip-test" data-toggle="tooltip" title="修改">
-							<span class="glyphicon glyphicon-search look"></span>
-						</a>
-						<a class="tooltip-test" data-toggle="tooltip" title="删除">
-							<span class="glyphicon glyphicon-trash delete"></span>
-						</a>
+						<c:if test="${enlist.enliststatus=='审核中'}">
+							<button id="approved" onclick="examine(this);">通过</button>
+							<button id="auditFailed" onclick="examine(this);">不通过</button>
+							<a class="tooltip-test" data-toggle="tooltip" title="删除">
+								<span class="glyphicon glyphicon-trash delete"></span>
+							</a>
+						</c:if>
+						<c:if test="${enlist.enliststatus=='不通过'}">
+							<a class="tooltip-test" data-toggle="tooltip" title="删除">
+								<span class="glyphicon glyphicon-trash delete"></span>
+							</a>
+						</c:if>
 					</td>
-					<td style="display: none">${presence.presenceid}</td>
+					<td style="display: none">${enlist.enlistid}</td>
 				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
 	    </div>
 	</div>
-	
-	<div class="modal fade" id="lookActivity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-			</div>
-			<div class="modal-footer">
-				<div class="row">
-				<div class="col-sm-2"></div>
-					<div class="col-sm-4 text-center">
-						<button type="button" class="btn btn-primary" id="update">修改</button>
-					</div>
-					<div class="col-sm-4 text-center">
-						<button type="button" class="btn btn-default" data-dismiss="modal" id="close">关闭</button>
-					</div>
-				<div class="col-sm-2"></div>
-				</div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
 </div>
 <script src="/graduation_project/js/myEnlist.js"></script>
 </body>

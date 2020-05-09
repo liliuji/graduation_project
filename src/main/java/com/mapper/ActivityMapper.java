@@ -23,4 +23,7 @@ public interface ActivityMapper {
 
     @Delete("delete from t_activity where activityId = #{activityId}")
     int deleteActivityById(@Param("activityId")int activityId);
+
+    @Select("select * from t_activity")
+    List<Activity> getActivityList();
 }

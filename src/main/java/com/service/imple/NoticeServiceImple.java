@@ -35,4 +35,9 @@ public class NoticeServiceImple implements NoticeService {
     public int deleteNotice(int noticeId){
         return noticeMapper.deleteNotice(noticeId);
     }
+
+    @Override
+    public Notice getNoticeById(int noticeId){
+        return noticeMapper.getNoticeById(noticeId);
+    }
 }

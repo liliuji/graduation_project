@@ -23,4 +23,7 @@ public interface NoticeMapper {
 
     @Delete("delete from t_notice where noticeId = #{noticeId}")
     int deleteNotice(@Param("noticeId") int noticeId);
+
+    @Select("select * from t_notice where noticeId = #{noticeId}")
+    Notice getNoticeById(@Param("noticeId")int noticeId);
 }

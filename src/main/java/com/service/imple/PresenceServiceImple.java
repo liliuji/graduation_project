@@ -35,5 +35,10 @@ public class PresenceServiceImple implements PresenceService {
     public int deletePresence(int presenceId){
         return presenceMapper.deletePresence(presenceId);
     }
+
+    @Override
+    public Presence getPresenceById(int presenceId){
+        return presenceMapper.getPresenceById(presenceId);
+    }
 }
 

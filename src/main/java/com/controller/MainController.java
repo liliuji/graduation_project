@@ -3,6 +3,7 @@ package com.controller;
 import com.course.exception.CustomException;
 import com.utils.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +17,11 @@ import java.util.Map;
 
 @Controller
 public class MainController {
+
+    @RequestMapping("/")
+    public String login(){
+        return "/Admin/login";
+    }
 
     @RequestMapping("/tip")
     public String tip(){

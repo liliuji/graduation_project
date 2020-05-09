@@ -12,4 +12,6 @@ public interface EnlistService {
     int updateEnlistStatus(String enlistStatus,int enlistId);
 
     int deleteEnlistById(int enlistId);
+
+    int saveEnlist(Enlist enlist);
 }

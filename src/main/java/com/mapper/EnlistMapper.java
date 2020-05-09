@@ -2,6 +2,7 @@ package com.mapper;
 
 import com.domain.Enlist;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -18,4 +19,7 @@ public interface EnlistMapper {
 
     @Delete("delete from t_enlist where enlistId = #{enlistId}")
     int deleteEnlistById(int enlistId);
+
+    @Insert("insert t_enlist () values ()")
+    int saveEnlist(Enlist enlist);
 }

@@ -30,4 +30,9 @@ public class EnlistServiceImple implements EnlistService {
     public int deleteEnlistById(int enlistId){
         return enlistMapper.deleteEnlistById(enlistId);
     }
+
+    @Override
+    public int saveEnlist(Enlist enlist){
+        return enlistMapper.saveEnlist(enlist);
+    }
 }

@@ -61,9 +61,9 @@ $(document).ready(function(){
             },
             success:function(data){
                 if(data=="0"){
-                    alert("修改失败");
+                    alert("回复失败");
                 }else{
-                    alert("修改成功");
+                    alert("回复成功");
                     $("#close").click();
                     window.location.href="/graduation_project/showFeedback";
                 }

@@ -1,8 +1,3 @@
-/**
-
- * 
- */
-
 var height=$(window).height();
 var width=$(window).width();
 $(document).ready(function(){

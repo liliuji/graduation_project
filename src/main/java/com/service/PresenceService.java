@@ -14,4 +14,6 @@ public interface PresenceService {
     int updatePresence(Presence presence);
 
     int deletePresence(int presenceId);
+
+    Presence getPresenceById(int presenceId);
 }

@@ -1,7 +1,11 @@
 package com.controller;
 
+import com.domain.Activity;
 import com.domain.Enlist;
+import com.domain.User;
+import com.service.ActivityService;
 import com.service.EnlistService;
+import com.service.UserService;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,27 +22,34 @@ public class EnlistController {
 
     @Autowired
     private EnlistService enlistService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private ActivityService activityService;
 
     @RequestMapping("/showEnlist")
     public ModelAndView showEnlist(ModelAndView modelAndView){
         List<Enlist> enlists = enlistService.getEnlists();
+        for(Enlist enlist:enlists){
+            User user = userService.getUserByUserId(enlist.getVolunteerid());
+            Activity activity = activityService.getActivityById(enlist.getActivityid());
+            enlist.setVolunteername(user.getUserName());
+            enlist.setActivityname(activity.getActivityname());
+        }
         modelAndView.addObject("enlists",enlists);
         modelAndView.setViewName("/Admin/showEnlist");
         return modelAndView;
     }
 
     @RequestMapping("/updateEnlistStatus")
-    public int updateEnlistStatus(HttpServletRequest request){
-        String enlistStatus = request.getParameter("enlistStatus");
-        int enlistId = NumberUtils.toInt(request.getParameter("enlistId"));
-        int result = enlistService.updateEnlistStatus(enlistStatus,enlistId);
+    public int updateEnlistStatus(String enliststatus,int enlistid){
+        int result = enlistService.updateEnlistStatus(enliststatus,enlistid);
         return result;
     }
 
     @RequestMapping("/deleteEnlist")
-    public int deleteEnlist(HttpServletRequest request){
-        int enlistId = NumberUtils.toInt(request.getParameter("enlistId"));
-        int result = enlistService.deleteEnlistById(enlistId);
+    public int deleteEnlist(int enlistid){
+        int result = enlistService.deleteEnlistById(enlistid);
         return result;
     }
 }

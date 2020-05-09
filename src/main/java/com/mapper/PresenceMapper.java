@@ -25,4 +25,7 @@ public interface PresenceMapper {
 
     @Delete("delete from t_presence where presenceId = #{presenceId}")
     int deletePresence(@Param("presenceId") int presenceId);
+
+    @Select("select * from t_presence where presenceId = #{presenceId}")
+    Presence getPresenceById(@Param("presenceId")int presenceId);
 }

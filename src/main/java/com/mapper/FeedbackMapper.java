@@ -2,6 +2,7 @@ package com.mapper;
 
 import com.domain.Feedback;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -18,4 +19,7 @@ public interface FeedbackMapper {
 
     @Select("select * from t_feedback")
     List<Feedback> getFeedbackList();
+
+    @Insert("insert t_feedback (feedbackContent,feedbackDate) values (#{feedbackcontent},#{feedbackdate})")
+    int saveFeedback(Feedback feedback);
 }

@@ -9,7 +9,9 @@ public interface FeedbackService {
 
     int updateFeedback(Feedback feedback);
 
-    int deleteFeeback( int feedbackId);
+    int deleteFeeback(int feedbackId);
 
     List<Feedback> getFeedbackList();
+
+    int saveFeedback(Feedback feedback);
 }

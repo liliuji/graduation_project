@@ -11,4 +11,6 @@ public interface ActivityService {
     Activity getActivityById(int activityId);
 
     int deleteActivityById(int activityId);
+
+    List<Activity> getActivityList();
 }

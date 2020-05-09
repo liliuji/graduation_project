@@ -30,4 +30,9 @@ public class FeedbackServiceImple implements FeedbackService {
     public List<Feedback> getFeedbackList(){
         return feedbackMapper.getFeedbackList();
     }
+
+    @Override
+    public int saveFeedback(Feedback feedback){
+        return feedbackMapper.saveFeedback(feedback);
+    }
 }

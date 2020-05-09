@@ -36,4 +36,9 @@ public class ActivityServiceImple implements ActivityService {
     public int deleteActivityById(int activityId){
         return activityMapper.deleteActivityById(activityId);
     }
+
+    @Override
+    public List<Activity> getActivityList(){
+        return activityMapper.getActivityList();
+    }
 }
