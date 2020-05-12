@@ -20,6 +20,16 @@ public interface EnlistMapper {
     @Delete("delete from t_enlist where enlistId = #{enlistId}")
     int deleteEnlistById(int enlistId);
 
-    @Insert("insert t_enlist () values ()")
+    @Insert("insert t_enlist (enlistReason,enlistDate,volunteerId,activityId,enlistStatus) "
+            + "values (#{enlistreason},#{enlistdate},#{volunteerid},#{activityid},#{enliststatus})")
     int saveEnlist(Enlist enlist);
+
+    @Select("select enlistStatus from t_enlist where activityId = #{activityid} and volunteerId = #{userId}")
+    String getEnlistStatus(@Param("activityid") Integer activityid, @Param("userId") Integer userId);
+
+    @Select("select * from t_enlist where activityId = #{activityId}")
+    List<Enlist> getEnlistsByActivityId(@Param("activityId")int activityId);
+
+    @Select("select * from t_enlist where volunteerId = #{volunteerId}")
+    List<Enlist> getEnlistsByVolunteerId(int volunteerId);
 }

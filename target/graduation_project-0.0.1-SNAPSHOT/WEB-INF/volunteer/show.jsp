@@ -136,13 +136,13 @@
         </div>
         <div class="nav">
             <ul>
-                <a href="<%=request.getContextPath()%>/index"><li>网页首页</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/join"><li>参加报名</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/publish"><li>发表反馈</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/index"><li>网页首页</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/join"><li>参加报名</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/publish"><li>发表反馈</li></a>
             </ul>
             <div class="navtext">
-                <a href="<%=request.getContextPath()%>/volunteerLogin"><li>登录/注册</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/login" id="loginOrRegister"><li>登录/注册</li></a>
             </div>
         </div>
        <div class="content">
@@ -150,7 +150,7 @@
             <div class="notice">
                 <ul>
                     <c:forEach items="${presenceList}" var= "presence"  varStatus="status">
-                        <a href="<%=request.getContextPath()%>/presenceInfo?presenceId=${presence.presenceid}">
+                        <a href="<%=request.getContextPath()%>/volunteer/presenceInfo?presenceId=${presence.presenceid}">
                             <li>${presence.presencename}</li>
                         </a>
                     </c:forEach>
@@ -165,10 +165,13 @@
 </body>
 
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-<script>
-   /* var attr=['山区扶贫志愿活动展示','养老院照顾老人志愿活动展示','新春文化节志愿活动展示','新春文化节志愿者','年长志愿者关爱活动','志愿服务培训活动','平安希望小学支教行动志愿活动','帮助环卫工清洁志愿服务活动','共享单车文明停放志愿服务','志愿者征集活动','关爱流浪宠物志愿活动','“弘扬志愿精神 助建世界名城”志愿服务活动',];
-    for(var i=0;i<attr.length;i++){
-        $(".notice").find("ul").append('<a href="showing.jsp"><li><div></div>'+attr[i]+'</li></a>');
-    }*/
+<script type="text/javascript">
+    $(document).ready(function(){
+        var volunteerAccount = '${account}';
+        if(volunteerAccount!=null&&volunteerAccount!=''){
+            $("#loginOrRegister").css("display","none");
+            $(".navtext").append("<li>"+volunteerAccount+",你好</li>");
+        }
+    });
 </script>
 </html>

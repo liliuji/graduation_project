@@ -119,20 +119,20 @@ pageEncoding="UTF-8"%>
 </style>
 
 <body>
-<form action="<%=request.getContextPath()%>/noticeInfo" method="post" id="formId" lass="form-horizontal" role="form">
+<form action="<%=request.getContextPath()%>/volunteer/noticeInfo" method="post" id="formId" lass="form-horizontal" role="form">
     <div class="document">
         <div class="header">
             <img src="<%=request.getContextPath()%>/volunteer/img/timg.jpg">
         </div>
         <div class="nav">
             <ul>
-                <a href="<%=request.getContextPath()%>/index"><li>网页首页</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/join"><li>参加报名</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/publish"><li>发表反馈</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/index"><li>网页首页</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/join"><li>参加报名</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/publish"><li>发表反馈</li></a>
             </ul>
             <div class="navtext">
-                <a href="<%=request.getContextPath()%>/volunteerLogin"><li>登录/注册</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/login" id="loginOrRegister"><li>登录/注册</li></a>
             </div>
         </div>
         <div class="content">
@@ -140,7 +140,7 @@ pageEncoding="UTF-8"%>
             <div class="notice">
                 <ul>
                 <c:forEach items="${noticeList}" var= "notice"  varStatus="status">
-                    <a href="<%=request.getContextPath()%>/noticeInfo?noticeId=${notice.noticeid}">
+                    <a href="<%=request.getContextPath()%>/volunteer/noticeInfo?noticeId=${notice.noticeid}">
                     <li>${notice.noticetitle}</li>
                     </a>
                 </c:forEach>
@@ -155,6 +155,12 @@ pageEncoding="UTF-8"%>
 </body>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
-
+    $(document).ready(function(){
+        var volunteerAccount = '${account}';
+        if(volunteerAccount!=null&&volunteerAccount!=''){
+            $("#loginOrRegister").css("display","none");
+            $(".navtext").append("<li>"+volunteerAccount+",你好</li>");
+        }
+    });
 </script>
 </html>

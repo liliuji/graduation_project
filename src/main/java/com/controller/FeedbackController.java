@@ -43,5 +43,4 @@ public class FeedbackController {
         int result = feedbackService.deleteFeeback(feedbackid);
         return result;
     }
-
 }

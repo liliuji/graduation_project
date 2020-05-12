@@ -4,7 +4,7 @@ $(document).ready(function(){
         var presencename = $(this).parents("tr").children("td").eq(1).html();
         var presencecontent = $(this).parents("tr").children("td").eq(2).html();
         var activename = $(this).parents("tr").children("td").eq(3).html();
-        var volunteername = $(this).parents("tr").children("td").eq(4).html();
+        var volunteeraccount = $(this).parents("tr").children("td").eq(4).html();
         var presenceid = $(this).parents("tr").children("td").eq(6).html();
         $(".modal-title").text(presencename);
         var $str="<table class='table table-bordered table-hover'>"+
@@ -17,10 +17,10 @@ $(document).ready(function(){
             "<td><textarea class='form-control' name='presencecontent' value= '"+presencecontent+"'>"+presencecontent+"</textarea></td>"+
             "</tr><tr>"+
             "<td>活动名称</td>"+
-            "<td><input type='text' class='form-control' name='activename' value= '"+activename+"'></td>"+
+            "<td>"+activename+"</td>"+
             "</tr><tr>"+
-            "<td>志愿者姓名</td>"+
-            "<td><input type='text' class='form-control' name='volunteername' value= '"+volunteername+"'></td>"+
+            "<td>志愿者账号</td>"+
+            "<td>"+volunteeraccount+"</td>"+
             "</tr><tr>"+
             "<td style='display: none'>"+presenceid+"</td>"+
             "</tr></tbody>"+
@@ -52,8 +52,8 @@ $(document).ready(function(){
     $("#update").click(function(){
         var presenceName = $("#presenceInfo").children("tr").eq(0).children("td").eq(1).find("input").val();
         var presencecontent = $("#presenceInfo").children("tr").eq(1).children("td").eq(1).find("textarea").val();
-        var activename = $("#presenceInfo").children("tr").eq(2).children("td").eq(1).find("input").val();
-        var volunteername = $("#presenceInfo").children("tr").eq(3).children("td").eq(1).find("input").val();
+        var activename = $("#presenceInfo").children("tr").eq(2).children("td").eq(1).html();
+        var volunteeraccount = $("#presenceInfo").children("tr").eq(3).children("td").eq(1).html();
         var presenceid = $("#presenceInfo").children("tr").eq(4).children("td").eq(0).html();
         $.ajax({
             url:"/graduation_project/updatePresence",
@@ -63,7 +63,7 @@ $(document).ready(function(){
                 'presencename':presenceName,
                 'presencecontent':presencecontent,
                 'activename':activename,
-                "volunteername":volunteername,
+                "volunteeraccount":volunteeraccount,
                 "presenceid":presenceid
             },
             success:function(data){

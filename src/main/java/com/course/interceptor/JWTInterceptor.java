@@ -30,7 +30,7 @@ public class JWTInterceptor implements HandlerInterceptor {
         }else if(user!=null) {
             return true;
         }else {
-            response.sendRedirect(request.getContextPath()+"/");
+            response.sendRedirect(request.getContextPath()+"/admin/login");
             return false;
         }
     }

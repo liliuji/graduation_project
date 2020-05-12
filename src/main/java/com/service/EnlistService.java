@@ -14,4 +14,10 @@ public interface EnlistService {
     int deleteEnlistById(int enlistId);
 
     int saveEnlist(Enlist enlist);
+
+    String getEnlistStatus(Integer activityid, Integer userId);
+
+    List<Enlist> getEnlistsByActivityId(int activityId);
+
+    List<Enlist> getEnlistsByVolunteerId(int volunteerId);
 }

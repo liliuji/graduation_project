@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.course.exception.CustomException;
+import com.domain.User;
 import com.utils.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,7 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-    @RequestMapping("/")
+    @RequestMapping("/admin/login")
     public String login(){
         return "/Admin/login";
     }
@@ -46,8 +47,11 @@ public class MainController {
     @RequestMapping("/error")
     public String error(HttpServletRequest request){
         String errorMsg = request.getParameter("errorMsg");
-        request.setAttribute("errorMsg",request.getAttribute("errorMsg"));
-        return "/error?errorMsg="+errorMsg;
+        if(StringUtils.isEmpty(errorMsg)){
+            errorMsg = (String) request.getAttribute("errorMsg");
+        }
+        request.setAttribute("errorMsg",errorMsg);
+        return "/error";
     }
 
     @RequestMapping("/uploadImage")
@@ -81,20 +85,13 @@ public class MainController {
                 uplodeFile.getParentFile().mkdirs();
             }
             file.transferTo(uplodeFile);
-            String projectPath = "C:/Users/liuji.li/Desktop/study/graduation_project/src/main"
-                                 + "/webapp/uploadImg/";
-            uplodeFile = new File(projectPath+fileName);
-            if (uplodeFile.getParentFile().exists()){
-                mreq = (MultipartHttpServletRequest)request;
-                file =  mreq.getFile("file");
-                file.transferTo(uplodeFile);
-            }
             map.put("uploadFlag",true);
             map.put("imgPath","uploadImg/"+fileName);
+            User  user  =  (User)request.getSession().getAttribute("user");
+            map.put("userId",user.getUserId());
         } catch (Exception e) {
             throw new CustomException(e.getMessage());
         }
-
         return map;
     }
 }

@@ -13,4 +13,6 @@ public interface ActivityService {
     int deleteActivityById(int activityId);
 
     List<Activity> getActivityList();
+
+    Activity getActivityByName(String activename);
 }

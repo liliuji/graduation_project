@@ -2,8 +2,12 @@ package com.controller;
 
 import com.course.exception.CustomException;
 import com.domain.Activity;
+import com.domain.Enlist;
+import com.domain.Presence;
 import com.domain.User;
 import com.service.ActivityService;
+import com.service.EnlistService;
+import com.service.PresenceService;
 import com.service.UserService;
 import com.utils.StringUtils;
 import org.apache.commons.io.FileUtils;
@@ -13,6 +17,7 @@ import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,33 +45,27 @@ public class ActivityController {
     private ActivityService activityService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private EnlistService enlistService;
+    @Autowired
+    private PresenceService presenceService;
 
     @RequestMapping("/saveActivity")
-    public Map addActivity(HttpServletRequest request) throws ParseException {
-        Activity activity = new Activity();
-        activity.setActivityname(request.getParameter("activityName"));
-        activity.setActivitydate(request.getParameter("activityDate"));
-        activity.setActivitylocation(request.getParameter("activityAddress"));
-        activity.setDeadline(request.getParameter("Adeadline"));
-        String Aintime = request.getParameter("Aintime");
-        String Aouttime = request.getParameter("Aouttime");
-        activity.setActivitystartdate(request.getParameter("Aintime"));
-        activity.setActivityenddate(request.getParameter("Aouttime"));
-        activity.setDemand(NumberUtils.toInt(request.getParameter("Apcount")));
-        activity.setActivityrequirement(request.getParameter("Arequest"));
-        activity.setActivityimgpath(request.getParameter("imgPath"));
-        User           user         =  (User)request.getSession().getAttribute("user");
-        activity.setByuserid(user.getUserId());
-        String nowDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        activity.setReleasetime(nowDate);
-        int result = activityService.saveActivity(activity);
-        Map resultMap = new HashMap();
-        if(result>0){
-            resultMap.put("result","活动添加成功!");
-        }else{
-            resultMap.put("result","活动添加失败!");
+    public int addActivity(Activity activity) throws ParseException, CustomException {
+        int result;
+        try {
+            Activity activity1 = activityService.getActivityByName(activity.getActivityname());
+            if(activity1!=null){
+                throw new CustomException("该活动已存在,请确认!");
+            }
+            String nowDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            activity.setReleasetime(nowDate);
+            result = activityService.saveActivity(activity);
+        } catch (Exception e) {
+            throw new CustomException(e.getMessage());
         }
-        return resultMap;
+
+        return result;
     }
 
     @RequestMapping("/myActivity")
@@ -116,8 +115,17 @@ public class ActivityController {
     }
 
     @RequestMapping("/deleteActivity")
-    public int deleteActivity(HttpServletRequest request){
-        int activityId = NumberUtils.toInt(request.getParameter("activityId"));
+    public int deleteActivity(int activityId) throws CustomException {
+      //  int activityId = NumberUtils.toInt(request.getParameter("activityId"));
+        List<Enlist> enlists = enlistService.getEnlistsByActivityId(activityId);
+        if(!CollectionUtils.isEmpty(enlists)){
+            throw new CustomException("该活动有报名信息，不允许删除！");
+        }
+        Activity activity = activityService.getActivityById(activityId);
+        List<Presence> presences = presenceService.getPresenceListByActivity(activity.getActivityname());
+        if(!CollectionUtils.isEmpty(presences)){
+            throw new CustomException("该活动有风采信息，不允许删除！");
+        }
         int result = activityService.deleteActivityById(activityId);
         return result;
     }

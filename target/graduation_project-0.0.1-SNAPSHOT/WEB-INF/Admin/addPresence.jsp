@@ -101,9 +101,9 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="volunteerName" class="col-sm-2 control-label">志愿者姓名</label>
+			<label for="volunteeraccount" class="col-sm-2 control-label">志愿者账号</label>
 			<div class="col-sm-7">
-				<input type="text" class="form-control" id="volunteerName" placeholder="请输入志愿者姓名">
+				<input type="text" class="form-control" id="volunteeraccount" placeholder="请输入志愿者账号">
 			</div>
 		</div>
 	</form>

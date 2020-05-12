@@ -1,7 +1,14 @@
 package com.controller;
 
+import com.course.exception.CustomException;
+import com.domain.Activity;
 import com.domain.Presence;
+import com.domain.User;
+import com.domain.Volunteer;
+import com.service.ActivityService;
 import com.service.PresenceService;
+import com.service.UserService;
+import com.service.VolunteerService;
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,23 +24,47 @@ import java.util.List;
 public class PresenceController {
 
     @Autowired
-    PresenceService presenceService;
+    private PresenceService presenceService;
+    @Autowired
+    private ActivityService activityService;
+    @Autowired
+    private VolunteerService     volunteerService;
 
     @RequestMapping("/savePresence")
-    public int savePresence(HttpServletRequest request,ModelAndView modelAndView){
-        Presence presence = new Presence();
-        presence.setPresencename(request.getParameter("presenceName"));
-        presence.setPresencecontent(request.getParameter("presenceContent"));
-        presence.setActivename(request.getParameter("activityName"));
-        presence.setVolunteername(request.getParameter("volunteerName"));
-        presence.setPresenceimgpath(request.getParameter("imgPath"));
-        int result = presenceService.savePresence(presence);
+    public int savePresence(Presence presence) throws CustomException {
+        int result;
+        try {
+            String volunteeraccount = presence.getVolunteeraccount();
+            String activename = presence.getActivename();
+            Activity activity = activityService.getActivityByName(activename);
+            Volunteer volunteer = volunteerService.getVolunteerByAccount(volunteeraccount);
+            if(volunteer==null){
+                throw new CustomException("没有该志愿者账号，请确认！");
+            }
+            if(activity==null) {
+                throw new CustomException("没有该活动，请确认！");
+            }
+            result = presenceService.savePresence(presence);
+        } catch (Exception e) {
+            throw new CustomException(e.getMessage());
+        }
+
         return result;
     }
 
     @RequestMapping("/showPresence")
     public ModelAndView showPresence(ModelAndView modelAndView){
         List<Presence> presenceList = presenceService.getPresenceList();
+        for(Presence presence:presenceList){
+            Activity activity = activityService.getActivityByName(presence.getActivename());
+            Volunteer volunteer = volunteerService.getVolunteerByAccount(presence.getVolunteeraccount());
+            if(activity!=null){
+                presence.setActivename(activity.getActivityname());
+            }
+            if(volunteer!=null){
+                presence.setVolunteeraccount(volunteer.getAccount());
+            }
+        }
         modelAndView.addObject("presenceList",presenceList);
         modelAndView.setViewName("/Admin/showPresence");
         return modelAndView;
@@ -46,8 +77,7 @@ public class PresenceController {
     }
 
     @RequestMapping("/deletePresence")
-    public int deletePresence(HttpServletRequest request){
-        int presenceId = NumberUtils.toInt(request.getParameter("presenceId"));
+    public int deletePresence(int presenceId){
         int result  = presenceService.deletePresence(presenceId);
         return result;
     }

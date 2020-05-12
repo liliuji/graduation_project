@@ -18,7 +18,7 @@ public class Volunteer {
 
     private String  age;
 
-    private Integer userTel;
+    private String userTel;
 
     private String  createDate;
 
@@ -86,11 +86,11 @@ public class Volunteer {
         this.userType = userType == null ? null : userType.trim();
     }
 
-    public Integer getUserTel() {
+    public String getUserTel() {
         return userTel;
     }
 
-    public void setUserTel(Integer userTel) {
+    public void setUserTel(String userTel) {
         this.userTel = userTel;
     }
 

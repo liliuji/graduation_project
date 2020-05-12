@@ -118,27 +118,27 @@ pageEncoding="UTF-8"%>
 </style>
 
 <body>
-<form action="<%=request.getContextPath()%>/savePublish" method="post" id="formId" lass="form-horizontal" role="form">
+<form action="<%=request.getContextPath()%>/volunteer/savePublish" method="post" onsubmit="return checkPublish();">
     <div class="document">
         <div class="header">
             <img src="<%=request.getContextPath()%>/volunteer/img/timg.jpg">
         </div>
         <div class="nav">
             <ul>
-                <a href="<%=request.getContextPath()%>/index"><li>网页首页</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/join"><li>参加报名</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/publish"><li>发表反馈</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/index"><li>网页首页</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/join"><li>参加报名</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/publish"><li>发表反馈</li></a>
             </ul>
             <div class="navtext">
-                <a href="<%=request.getContextPath()%>/volunteerLogin"><li>登录/注册</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/login" id="loginOrRegister"><li>登录/注册</li></a>
             </div>
         </div>
         <div class="content">
             <p>请输入你想要反馈的言论：</p>
             <textarea id="feedbackcontent" name="feedbackcontent"></textarea>
             <br/>
-            <input class="submit" type="button" value="提交"/>
+            <input class="submit" type="submit" value="提交"/>
             <input class="none" type="button" value="清空"/>
         </div>
         <div class="footer">
@@ -149,22 +149,29 @@ pageEncoding="UTF-8"%>
 </body>
 
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-<script>
-    $(".submit").click(function(){
-        if($("textarea").val()==""){
-            alert("内容不能为空！！！");
-        }else{
-            alert("提交成功！！！");
-            $("textarea").val(""); 
-        } 
+<script type="text/javascript">
+    $(document).ready(function(){
+        var volunteerAccount = '${account}';
+        if(volunteerAccount!=null&&volunteerAccount!=''){
+            $("#loginOrRegister").css("display","none");
+            $(".navtext").append("<li>"+volunteerAccount+",你好</li>");
+        }
 
-    })
+        var savePublishFlag = '${savePublishFlag}';
+        if(savePublishFlag==1){
+            alert("发表反馈成功!");
+        }
+    });
+
     $(".none").click(function(){
+        $("textarea").val("");
+    });
+
+    function checkPublish(){
         if($("textarea").val()==""){
-            alert("内容不能为空！！！");
-        }else{
-            $("textarea").val(""); 
-        } 
-    })
+            alert("内容不能为空！");
+            return false;
+        }
+    }
 </script>
 </html>

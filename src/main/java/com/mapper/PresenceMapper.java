@@ -11,16 +11,16 @@ import java.util.List;
 
 public interface PresenceMapper {
 
-    @Insert("insert into t_presence (presenceName, presenceContent,volunteerName, activeName,presenceImgPath)"
+    @Insert("insert into t_presence (presenceName, presenceContent,volunteerAccount, activityName,presenceImgPath)"
             + "values (#{presencename,jdbcType=VARCHAR},#{presencecontent,jdbcType=VARCHAR},"
-            + " #{volunteername,jdbcType=VARCHAR},#{activename,jdbcType=VARCHAR},#{presenceimgpath,jdbcType=VARCHAR})")
+            + " #{volunteeraccount,jdbcType=VARCHAR},#{activename,jdbcType=VARCHAR},#{presenceimgpath,jdbcType=VARCHAR})")
     int savePresence(Presence presence);
 
     @Select("select * from t_presence")
     List<Presence> getPresenceList();
 
-    @Update("update t_presence set presenceName = #{presencename},presenceContent=#{presencecontent},volunteerName=#{volunteername},"
-            + "activeName=#{activename} where presenceId = #{presenceid}")
+    @Update("update t_presence set presenceName = #{presencename},presenceContent=#{presencecontent},volunteerAccount=#{volunteeraccount},"
+            + "activityName=#{activename} where presenceId = #{presenceid}")
     int updatePresence(Presence presence);
 
     @Delete("delete from t_presence where presenceId = #{presenceId}")
@@ -28,4 +28,10 @@ public interface PresenceMapper {
 
     @Select("select * from t_presence where presenceId = #{presenceId}")
     Presence getPresenceById(@Param("presenceId")int presenceId);
+
+    @Select("select * from t_presence where activityName = #{activityname}")
+    List<Presence> getPresenceListByActivity(@Param("activityname") String activityname);
+
+    @Select("select * from t_presence where volunteerAccount = #{account}")
+    List<Presence> getPresenceListByVolunteerAccount(@Param("account") String account);
 }

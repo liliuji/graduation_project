@@ -26,8 +26,8 @@ $(document).ready(function(){
 		var presenceName=$("#presenceName").val();
 		var presenceContent=$("#presenceContent").val();
 		var activityName=$("#activityName").val();
-		var volunteerName=$("#volunteerName").val();
-		if(presenceName==""||presenceContent==""||activityName==""||volunteerName==""){
+		var volunteeraccount=$("#volunteeraccount").val();
+		if(presenceName==""||presenceContent==""||activityName==""||volunteeraccount==""){
 			alert("输入框不能为空");
 			return;
 		}
@@ -47,11 +47,11 @@ $(document).ready(function(){
     	    		type:"post",
     	    		cache:false,
     	    		data:{
-    	    			'presenceName':presenceName,
-						'presenceContent':presenceContent,
-						'activityName':activityName,
-						'volunteerName':volunteerName,
-						"imgPath":imgPath
+    	    			'presencename':presenceName,
+						'presencecontent':presenceContent,
+						'activename':activityName,
+						'volunteeraccount':volunteeraccount,
+						"presenceimgpath":imgPath
     	    		},
     	            dataType:"text",
     	    		success:function(data){
@@ -78,5 +78,4 @@ $(document).ready(function(){
 	  $("input").val("");
 	  $("textarea").val("");
   });
-	
 });

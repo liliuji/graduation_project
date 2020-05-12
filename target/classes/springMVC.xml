@@ -45,15 +45,9 @@
 			<mvc:exclude-mapping path="/**/*.png"/>
 			<mvc:exclude-mapping path="/**/*.gif"/>
 			<mvc:exclude-mapping path="/**/*.html"/>
-			<mvc:exclude-mapping path="/"/>
-			<mvc:exclude-mapping path="/index"/>
-			<mvc:exclude-mapping path="/noticeInfo"/>
-			<mvc:exclude-mapping path="/presenceList"/>
-			<mvc:exclude-mapping path="/presenceInfo"/>
-			<mvc:exclude-mapping path="/join"/>
-			<mvc:exclude-mapping path="/joining"/>
-			<mvc:exclude-mapping path="/publish"/>
-			<mvc:exclude-mapping path="/volunteerLogin"/>
+			<mvc:exclude-mapping path="/admin/login"/>
+			<mvc:exclude-mapping path="/**/error.jsp"/>
+			<mvc:exclude-mapping path="/**/volunteer/**/"/>
 			<bean class="com.course.interceptor.JWTInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

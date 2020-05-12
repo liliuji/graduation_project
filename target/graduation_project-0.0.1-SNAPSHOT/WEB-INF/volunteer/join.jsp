@@ -114,18 +114,18 @@ pageEncoding="UTF-8"%>
         </div>
         <div class="nav">
             <ul>
-                <a href="<%=request.getContextPath()%>/index"><li>网页首页</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/join"><li>参加报名</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/publish"><li>发表反馈</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/index"><li>网页首页</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/join"><li>参加报名</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/publish"><li>发表反馈</li></a>
             </ul>
             <div class="navtext">
-                <a href="<%=request.getContextPath()%>/volunteerLogin"><li>登录/注册</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/login" id="loginOrRegister"><li>登录/注册</li></a>
             </div>
         </div>
         <div class="content" style="text-align:center;background:#f1f1f1;">
-            <c:forEach items="${activityList}" var= "activity"  varStatus="status">
-                <a href="<%=request.getContextPath()%>/joining?activityId=${activity.activityid}"><div><img src="<%=request.getContextPath()%>/${activity.activityimgpath}" /></div></a>
+            <c:forEach items="${activitys}" var= "activity"  varStatus="status">
+                <a href="<%=request.getContextPath()%>/volunteer/joining?activityId=${activity.activityid}"><div><img src="<%=request.getContextPath()%>/${activity.activityimgpath}" /></div></a>
             </c:forEach>
         </div>
         <div class="footer">
@@ -134,9 +134,13 @@ pageEncoding="UTF-8"%>
     </div>
 </body>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-<script>
-   /* for(var i=0;i<8;i++){
-        $(".content").append('<a href="joining.jsp"><div><img src="<%=request.getContextPath()%>/volunteer/img/bg.jpg" /></div></a>');
-    }*/
+<script type="text/javascript">
+    $(document).ready(function(){
+        var volunteerAccount = '${account}';
+        if(volunteerAccount!=null&&volunteerAccount!=''){
+            $("#loginOrRegister").css("display","none");
+            $(".navtext").append("<li>"+volunteerAccount+",你好</li>");
+        }
+    });
 </script>
 </html>

@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface ActivityMapper {
 
-    @Insert("insert t_activity(activityName,activityDate,activityLocation,deadline,activityStartDate,activityEndDate,demand,activityRequirement,byUserId,activityImgPath,"
+    @Insert("insert t_activity(activityName,activityDate,activityLocation,deadline,activityStartDate,activityEndDate,demand,activityRequirement,activityContent,byUserId,activityImgPath,"
             + "releaseTime) values (#{activityname},#{activitydate},#{activitylocation},#{deadline},#{activitystartdate},#{activityenddate},#{demand},#{activityrequirement},"
-            + "#{byuserid},#{activityimgpath},#{releasetime})")
+            + "#{activitycontent},#{byuserid},#{activityimgpath},#{releasetime})")
     int saveActivity(Activity activity);
 
     @Select("select * from t_activity where byUserId = #{userId}")
@@ -26,4 +26,7 @@ public interface ActivityMapper {
 
     @Select("select * from t_activity")
     List<Activity> getActivityList();
+
+    @Select("select * from t_activity where activityName = #{activename}")
+    Activity getActivityByName(@Param("activename") String activename);
 }

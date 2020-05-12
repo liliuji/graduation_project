@@ -35,4 +35,19 @@ public class EnlistServiceImple implements EnlistService {
     public int saveEnlist(Enlist enlist){
         return enlistMapper.saveEnlist(enlist);
     }
+
+    @Override
+    public String getEnlistStatus(Integer activityid, Integer userId){
+        return enlistMapper.getEnlistStatus(activityid,userId);
+    }
+
+    @Override
+    public List<Enlist> getEnlistsByActivityId(int activityId){
+        return enlistMapper.getEnlistsByActivityId(activityId);
+    }
+
+    @Override
+    public List<Enlist> getEnlistsByVolunteerId(int volunteerId){
+        return enlistMapper.getEnlistsByVolunteerId(volunteerId);
+    }
 }

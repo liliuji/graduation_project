@@ -25,6 +25,16 @@ public class Activity {
 
     private String activityrequirement;
 
+    private String activitycontent;
+
+    public String getActivitycontent() {
+        return activitycontent;
+    }
+
+    public void setActivitycontent(String activitycontent) {
+        this.activitycontent = activitycontent;
+    }
+
     public String getByUserName() {
         return byUserName;
     }

@@ -33,7 +33,7 @@
 				<th>风采名称</th>
 				<th>风采内容</th>
 				<th>活动名称</th>
-				<th>志愿者姓名</th>
+				<th>志愿者账号</th>
 				<th>操作</th>
 			</tr>
 			</thead>
@@ -44,7 +44,7 @@
 					<td>${presence.presencename}</td>
 					<td>${presence.presencecontent}</td>
 					<td>${presence.activename}</td>
-					<td>${presence.volunteername}</td>
+					<td>${presence.volunteeraccount}</td>
 					<td>
 						<a class="tooltip-test" data-toggle="tooltip" title="修改">
 							<span class="glyphicon glyphicon-search look"></span>

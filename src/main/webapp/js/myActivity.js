@@ -35,6 +35,8 @@ $(document).ready(function(){
 									"<td>"+info.demand+"</td>"+
     		        "</tr><tr  rowspan='4'><td>活动要求</td>"+
     				"<td style='overflow:auto'>"+info.activityrequirement+"</td></tr>"+
+					"<tr  rowspan='4'><td>活动内容</td>"+
+					"<td style='overflow:auto'>"+info.activitycontent+"</td></tr>"+
     				"<tr><td>发布人</td>"+
     				"<td>"+info.byUserName+"</td></tr>"+
     				"<tr><td>发布时间</td>"+

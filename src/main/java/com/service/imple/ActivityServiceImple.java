@@ -41,4 +41,9 @@ public class ActivityServiceImple implements ActivityService {
     public List<Activity> getActivityList(){
         return activityMapper.getActivityList();
     }
+
+    @Override
+    public Activity getActivityByName(String activename){
+        return activityMapper.getActivityByName(activename);
+    }
 }

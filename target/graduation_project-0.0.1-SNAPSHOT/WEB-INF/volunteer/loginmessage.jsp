@@ -115,36 +115,69 @@ pageEncoding="UTF-8"%>
     }
 </style>
 <body>
+<form action="<%=request.getContextPath()%>/volunteer/loginmessageInfo" method="post" onsubmit="return checkInfo();">
     <div class="document">
         <div class="nav">
             <ul>
-                <a href="<%=request.getContextPath()%>/index"><li>网页首页</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/join"><li>参加报名</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/publish"><li>发表反馈</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/index"><li>网页首页</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/join"><li>参加报名</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/publish"><li>发表反馈</li></a>
             </ul>
             <div class="navtext">
-                <a href="<%=request.getContextPath()%>/volunteerLogin"><li>登录/注册</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/login"><li>登录/注册</li></a>
             </div>
         </div>
         <div class="login">
-            <div class="input" style="margin-top:40px;"><label>手机号：</label><input class="text" type="text"></input></div>
-            <div class="input"><label>密码：</label><input class="password" type="password"></input></div>
-            <div class="input"><label>姓名：</label><input class="text" type="text"></input></div>
-            <div class="input"><label>性别：</label><input class="text" type="text"></input></div>
-            <div class="input"><label>年龄：</label><input class="text" type="text"></input></div>
-            <div class="input"><label>身份证号：</label><input class="text" type="text"></input></div>
+            <div class="input" style="margin-top:40px;"><label>账号：</label><input class="text" type="text" name="account"/></div>
+            <div class="input"><label>密码：</label><input class="password" type="text" name="password"/></div>
+            <div class="input"><label>姓名：</label><input class="text" type="text" name="userName"/></div>
+            <div class="input"><label>性别：</label><input class="text" type="text" name="sex"/></div>
+            <div class="input"><label>年龄：</label><input class="text" type="text" name="age"/></div>
+            <div class="input"><label>身份证号：</label><input class="text" type="text" name="card"/></div>
+            <div class="input"><label>手机号：</label><input class="text" name="userTel"/></div>
             <div class="button">
-                <a href="login.jsp"><input class="submit" type="button" value="提交"></a>
+                <input class="submit" type="submit" value="提交">
             </div>
         </div>
     </div>
+</form>
 </body>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-<script>
-    $(".submit").click(function(){
-        alert("注册成功！！！！");         
-    })
+<script type="text/javascript">
+    function checkInfo(){
+        var account = $("input[name='account']").val();
+        var password = $("input[name='password']").val();
+        var userName = $("input[name='userName']").val();
+        var sex = $("input[name='sex']").val();
+        var age = $("input[name='age']").val();
+        var card = $("input[name='card']").val();
+        var userTel = $("input[name='userTel']").val();
+        if(account==""||password==""){
+            alert("用户名或密码不能为空！");
+            return false;
+        }
+        if(userName==""){
+            alert("姓名不能为空！");
+            return false;
+        }
+        if(sex==""){
+            alert("性别不能为空！");
+            return false;
+        }
+        if(age==""){
+            alert("年龄不能为空！");
+            return false;
+        }
+        if(card==""){
+            alert("身份证号不能为空！");
+            return false;
+        }
+        if(userTel==""){
+            alert("手机号不能为空！");
+            return false;
+        }
+    }
     
 </script>
 </html>

@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
     .document{
         min-width: 1100px;
         min-height: 500px;
-        background: url(img/bg.jpg) no-repeat center;
+        background: url(<%=request.getContextPath()%>/volunteer/img/bg.jpg) no-repeat center;
         position: fixed;
         left: 0;
         right: 0;
@@ -115,26 +115,53 @@ pageEncoding="UTF-8"%>
     }
 </style>
 <body>
+<form action="<%=request.getContextPath()%>/volunteer/volunteerCheckLogin" method="post" onsubmit="return check();">
     <div class="document">
         <div class="nav">
             <ul>
-                <a href="<%=request.getContextPath()%>/index"><li>网页首页</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/join"><li>参加报名</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/publish"><li>发表反馈</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/index"><li>网页首页</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/join"><li>参加报名</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/publish"><li>发表反馈</li></a>
             </ul>
             <div class="navtext">
-                <a href="<%=request.getContextPath()%>/volunteerLogin"><li>登录/注册</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/login"><li>登录/注册</li></a>
             </div>
         </div>
         <div class="login">
-            <div class="input" style="margin-top:80px;"><label>手机号：</label><input class="text" type="text"></input></div>
-            <div class="input"><label>密码：</label><input class="password" type="password"></input></div>
+            <div class="input" style="margin-top:80px;"><label>账号：</label><input class="text" type="text" name="account"/></div>
+            <div class="input"><label>密码：</label><input class="password" type="password" name="password"/></div>
             <div class="button">
-                <a href="<%=request.getContextPath()%>/volunteer/loginmessage"><input type="button" value="注册"></a>
-                <a href="<%=request.getContextPath()%>/volunteer/volunteerCheckLogin"><input type="button" value="登录"></a>
+                <input type="button" value="注册" id="loginmessage">
+                <input type="submit" value="登录" id="login">
             </div>
         </div>
     </div>
+</form>
 </body>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var loginmessageSuccess = '${loginmessageSuccess}';
+        if(loginmessageSuccess!=''&&loginmessageSuccess!=null){
+            alert(loginmessageSuccess);
+        }
+    });
+    $("#loginmessage").click(function () {
+        window.location.href = "<%=request.getContextPath()%>/volunteer/loginmessage";
+    });
+
+    function check(){
+        var account = $("input[name='account']").val();
+        var password = $("input[name='password']").val();
+        if (account == "") {
+            alert("账号不能为空！");
+            return false;
+        }
+        if(password==""){
+            alert("密码不能为空！");
+            return false;
+        }
+    }
+</script>
 </html>

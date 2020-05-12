@@ -40,5 +40,15 @@ public class PresenceServiceImple implements PresenceService {
     public Presence getPresenceById(int presenceId){
         return presenceMapper.getPresenceById(presenceId);
     }
+
+    @Override
+    public  List<Presence> getPresenceListByActivity(String activityname){
+        return presenceMapper.getPresenceListByActivity(activityname);
+    }
+
+    @Override
+    public List<Presence> getPresenceListByVolunteerAccount(String account){
+        return presenceMapper.getPresenceListByVolunteerAccount(account);
+    }
 }
 

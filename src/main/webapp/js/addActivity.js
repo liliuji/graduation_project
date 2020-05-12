@@ -173,8 +173,7 @@ $(document).ready(function(){
 			    }
 			  });
 	});
-	
-	
+
 	$("#sub").on("click",function(){
 		if($("#uploadImage").val()==""){
 			alert("请选择图片");
@@ -209,7 +208,8 @@ $(document).ready(function(){
 		var Aouttime=$("#Aouttime").val();
 		var Arequest=$("#Arequest").val();
 		var Apcount=$("#Apcount").val();
-		if(Adeadline==""||Aintime==""||Aouttime==""||Arequest==""||Apcount=="") {
+		var Acontent=$("#Acontent").val();
+		if(Adeadline==""||Aintime==""||Aouttime==""||Arequest==""||Apcount==""||Acontent=="") {
 			flag = 1;
 		}
 
@@ -227,25 +227,35 @@ $(document).ready(function(){
             processData: false,
             dataType:"text",
     		success:function(data){
-    			var imgPath = JSON.parse(data).imgPath;
+    			var resultMap = JSON.parse(data);
+    			var imgPath = resultMap.imgPath;
+    			var userId = resultMap.userId;
     			$.ajax({
     	    		url:"/graduation_project/saveActivity",
     	    		type:"post",
     	    		cache:false,
     	    		data:{
-    	    			'activityName':Aname,
-						'activityDate':Adate,
-						'activityAddress':Address,
-						'Adeadline':Adeadline,
-						'Aintime':Aintime,
-						'Aouttime':Aouttime,
-						'Apcount':Apcount,
-						'Arequest':Arequest,
-						"imgPath":imgPath
+    	    			'activityname':Aname,
+						'activitydate':Adate,
+						'activitylocation':Address,
+						'deadline':Adeadline,
+						'activitystartdate':Aintime,
+						'activityenddate':Aouttime,
+						'demand':Apcount,
+						'activityrequirement':Arequest,
+						"activityimgpath":imgPath,
+						"activitycontent":Acontent,
+						"byuserid":userId
     	    		},
     	            dataType:"text",
     	    		success:function(data){
-    	    			var result = JSON.parse(data).result;
+    	    			if(data==0){
+    	    				alert("活动添加失败!");
+						}else if(data==1){
+							alert("活动添加成功!");
+							window.location.href="/graduation_project/myActivity";
+						}
+    	    			/*var result = JSON.parse(data).result;
     	    			if(result=="活动添加成功!"){
         	    			$("#result").text(data);
         	    			$('#myModal').modal('show');
@@ -254,7 +264,7 @@ $(document).ready(function(){
         	    		    },1200);
     	    			} else{
 							alert(result);
-						}
+						}*/
     	    		},
     	    		error:function(xhr){
     	    			alert('出错。。\n'+xhr.responseText);
@@ -272,5 +282,4 @@ $(document).ready(function(){
 	  $("input").val("");
 	  $("textarea").val("");
   });
-	
 });

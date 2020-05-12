@@ -116,20 +116,20 @@ pageEncoding="UTF-8"%>
 </style>
 
 <body>
-<form action="">
+<form action="<%=request.getContextPath()%>/volunteer/saveEnlist" method="post" onsubmit="return checkReason();">
     <div class="document">
         <div class="header">
             <img src="<%=request.getContextPath()%>/volunteer/img/timg.jpg">
         </div>
         <div class="nav">
             <ul>
-                <a href="<%=request.getContextPath()%>/index"><li>网页首页</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/join"><li>参加报名</li></a>&nbsp;&nbsp;|
-                <a href="<%=request.getContextPath()%>/publish"><li>发表反馈</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/index"><li>网页首页</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/presenceList"><li>风采展览</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/join"><li>参加报名</li></a>&nbsp;&nbsp;|
+                <a href="<%=request.getContextPath()%>/volunteer/publish"><li>发表反馈</li></a>
             </ul>
             <div class="navtext">
-                <a href="<%=request.getContextPath()%>/volunteerLogin"><li>登录/注册</li></a>
+                <a href="<%=request.getContextPath()%>/volunteer/login" id="loginOrRegister"><li>登录/注册</li></a>
             </div>
         </div>
         <div class="content" >
@@ -142,21 +142,22 @@ pageEncoding="UTF-8"%>
                 <p>
                     <pre>
                     活动内容：
-                    ${activity.activityrequirement}
+                    ${activity.activitycontent}
                     </pre>
                 </p>
                 <p>
                     <pre>
                     活动要求：
-                    1.喜欢小学生
-                    2.成绩优异，可以讲课
-                    3.了解小学生的爱好习惯
-                    4.服从安排
+                    ${activity.activityrequirement}
                     </pre>
                 </p>
             </div>
             <hr/>
-            <input type="button" value="参加">
+            <input type="hidden" value="${activity.activityid}" name="activityid">
+            <input type="hidden" value="${volunteer.userId}" name="volunteerid">
+            <label for="enlistreason" class="col-sm-2 control-label" id="enlistLable">报名原因：</label>
+            <textarea rows="3" placeholder="请输入报名原因：" name="enlistreason" id="enlistreason"></textarea>
+            <input type="submit" value="报名" id="enlist">
         </div>
         <div class="footer">
             <img src="<%=request.getContextPath()%>/volunteer/img/bottom.png">
@@ -166,9 +167,37 @@ pageEncoding="UTF-8"%>
 </body>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <script>
-    $("input").click(function(){
-        alert("报名提交成功！！！");
-        $("input").css('display','none');
-    })
+    function checkReason(){
+        var volunteerAccount = '${account}';
+        if(volunteerAccount==null||volunteerAccount==""){
+            alert("请先登录系统！");
+            window.location.href="<%=request.getContextPath()%>/volunteer/login";
+            return false;
+        }
+        var enlistreason = $("#enlistreason").val();
+        if(enlistreason==""||enlistreason==null){
+            alert("请输入报名原因!");
+            return false;
+        }
+    }
+
+    $(document).ready(function(){
+        var volunteerAccount = '${account}';
+        if(volunteerAccount!=null&&volunteerAccount!=''){
+            $("#loginOrRegister").css("display","none");
+            $(".navtext").append("<li>"+volunteerAccount+",你好</li>");
+        }
+        var enliststatus = '${enliststatus}';
+        if(enliststatus!=""&&enliststatus!=null){
+            $('#enlistLable').css("display","none");
+            $('#enlistreason').css("display","none");
+            $('#enlist').css("display","none");
+            $('.content').append("报名成功，状态："+enliststatus);
+        }
+        var enlistsFlag = '${enlistsFlag}';
+        if(enlistsFlag!=null&&enlistsFlag==1){
+            alert("报名成功！");
+        }
+    });
 </script>
 </html>

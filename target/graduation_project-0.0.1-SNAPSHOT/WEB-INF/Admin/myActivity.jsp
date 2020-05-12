@@ -147,9 +147,9 @@
 				<div class="col-sm-4 text-center">
                 	<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
-				<div class="col-sm-4 text-center">
+				<%--<div class="col-sm-4 text-center">
                 	<button type="button" class="btn btn-primary" id="export">导出名单</button>
-                </div>
+                </div>--%>
 				<div class="col-sm-2"></div>
 				</div>
             </div>
@@ -157,5 +157,6 @@
     </div><!-- /.modal -->
 </div>
 <script src="/graduation_project/js/myActivity.js"></script>
+</div>
 </body>
 </html>

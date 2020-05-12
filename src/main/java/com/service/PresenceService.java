@@ -16,4 +16,8 @@ public interface PresenceService {
     int deletePresence(int presenceId);
 
     Presence getPresenceById(int presenceId);
+
+    List<Presence> getPresenceListByActivity(String activityname);
+
+    List<Presence> getPresenceListByVolunteerAccount(String account);
 }

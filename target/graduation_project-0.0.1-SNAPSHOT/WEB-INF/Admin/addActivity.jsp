@@ -148,9 +148,15 @@
     	<div class="form-group">
     		<label for="Arequest" class="col-sm-2 control-label">活动要求</label>
     		<div class="col-sm-7">
-      			<textarea class="form-control" id="Arequest" placeholder="此处将整则招募信息填入" rows="3"></textarea>
+      			<textarea class="form-control" id="Arequest" placeholder="此处将整则招募要求填入" rows="3"></textarea>
     		</div>
     	</div>
+		<div class="form-group">
+			<label for="Arequest" class="col-sm-2 control-label">活动内容</label>
+			<div class="col-sm-7">
+				<textarea class="form-control" id="Acontent" placeholder="此处将整则招募信息填入" rows="3"></textarea>
+			</div>
+		</div>
 	</form>
 	<div class="col-sm-3 col-sm-offset-2">
 	<button class="btn btn-info btn-lg btn-block " id="sub">提交</button>

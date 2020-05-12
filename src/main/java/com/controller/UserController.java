@@ -1,6 +1,7 @@
 package com.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.ValidationException;
 
@@ -25,7 +26,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/checkLogin")
-    public String checkLogin(User user, HttpSession session, HttpServletRequest request, Model model) throws Exception {
+    public String checkLogin(User user, HttpSession session, HttpServletResponse response) throws Exception {
         String userName = user.getUserName();
         String passWord = user.getPassword();
         if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(passWord)) {
@@ -33,8 +34,10 @@ public class UserController {
         }
         user = userService.getUser(userName, passWord);
         if (user != null) {
+            if(StringUtils.equals(user.getUserType(),"volunteer")){
+                throw new CustomException("后台系统只允许管理员登陆！");
+            }
             session.setAttribute("userName", userName);
-            session.setAttribute("passWord", passWord);
             session.setAttribute("user", user);
             return "/Admin/main";
         } else {
