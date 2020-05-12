@@ -20,4 +20,6 @@ public interface EnlistService {
     List<Enlist> getEnlistsByActivityId(int activityId);
 
     List<Enlist> getEnlistsByVolunteerId(int volunteerId);
+
+    int getVolunteerCount(Integer activityid);
 }

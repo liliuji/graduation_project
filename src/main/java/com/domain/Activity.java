@@ -27,6 +27,8 @@ public class Activity {
 
     private String activitycontent;
 
+    private Integer volunteerCount;
+
     public String getActivitycontent() {
         return activitycontent;
     }
@@ -139,5 +141,13 @@ public class Activity {
 
     public void setActivityrequirement(String activityrequirement) {
         this.activityrequirement = activityrequirement == null ? null : activityrequirement.trim();
+    }
+
+    public Integer getVolunteerCount() {
+        return volunteerCount;
+    }
+
+    public void setVolunteerCount(Integer volunteerCount) {
+        this.volunteerCount = volunteerCount;
     }
 }

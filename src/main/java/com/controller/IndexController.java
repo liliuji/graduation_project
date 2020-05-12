@@ -92,6 +92,8 @@ public class IndexController {
                 String endDate = activity.getActivitydate()+" "+activity.getActivityenddate();
                 long endtTime = simpleDateFormat.parse(endDate).getTime();
                 if(endtTime>nowTime){
+                    int volunteerCount = enlistService.getVolunteerCount(activity.getActivityid());
+                    activity.setVolunteerCount(volunteerCount);
                     activitys.add(activity);
                 }
             }

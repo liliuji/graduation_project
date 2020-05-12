@@ -32,4 +32,7 @@ public interface EnlistMapper {
 
     @Select("select * from t_enlist where volunteerId = #{volunteerId}")
     List<Enlist> getEnlistsByVolunteerId(int volunteerId);
+
+    @Select("select count(*) from t_enlist where activityId = #{activityid}")
+    int getVolunteerCount(@Param("activityid")Integer activityid);
 }

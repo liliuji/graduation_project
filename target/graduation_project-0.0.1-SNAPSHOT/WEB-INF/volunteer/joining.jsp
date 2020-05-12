@@ -105,13 +105,14 @@ pageEncoding="UTF-8"%>
         display:block;
     }
     input{
-        display:inline-block;
-        padding:7px 30px;
-        background:#579f23;
-        color:#fff;
-        border:0;
-        border-radius:5px;
-        float:right;
+        display: inline-block;
+        padding: 7px 40px;
+        background: #579f23;
+        color: #fff;
+        border: 0;
+        border-radius: 5px;
+        float: right;
+        margin-top: 40px;
     }
 </style>
 
@@ -140,23 +141,22 @@ pageEncoding="UTF-8"%>
                 <p>活动地点：${activity.activitylocation}</p><br/>
                 <p>需求人数：${activity.demand}人</p><br/>
                 <p>
-                    <pre>
                     活动内容：
+                    <br/>
                     ${activity.activitycontent}
-                    </pre>
                 </p>
+                <br/>
                 <p>
-                    <pre>
                     活动要求：
+                    <br/>
                     ${activity.activityrequirement}
-                    </pre>
                 </p>
             </div>
             <hr/>
             <input type="hidden" value="${activity.activityid}" name="activityid">
             <input type="hidden" value="${volunteer.userId}" name="volunteerid">
-            <label for="enlistreason" class="col-sm-2 control-label" id="enlistLable">报名原因：</label>
-            <textarea rows="3" placeholder="请输入报名原因：" name="enlistreason" id="enlistreason"></textarea>
+            <label for="enlistreason" class="col-sm-2 control-label" id="enlistLable" style="display: inline-block;line-height: 80px;float: left;margin-top: 20px;">报名原因：</label>
+            <textarea rows="3" placeholder="请输入报名原因：" name="enlistreason" id="enlistreason" style="margin-top:20px;width:500px;height:80px"></textarea>
             <input type="submit" value="报名" id="enlist">
         </div>
         <div class="footer">

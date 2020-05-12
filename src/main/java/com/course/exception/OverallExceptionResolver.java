@@ -22,7 +22,7 @@ public class OverallExceptionResolver implements HandlerExceptionResolver {
         try {
              if(isAjax(request)){
                  request.setAttribute("errorMsg", message);
-                 response.sendRedirect(request.getContextPath()+"/error.jsp?errorMsg="+message);
+                 response.sendRedirect(request.getContextPath()+"/error?errorMsg="+message);
               }else {
                  //跳转到相应的处理页面
                  modelAndView.addObject("errorMsg", message);

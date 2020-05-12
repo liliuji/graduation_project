@@ -50,4 +50,9 @@ public class EnlistServiceImple implements EnlistService {
     public List<Enlist> getEnlistsByVolunteerId(int volunteerId){
         return enlistMapper.getEnlistsByVolunteerId(volunteerId);
     }
+
+    @Override
+    public int getVolunteerCount(Integer activityid){
+        return enlistMapper.getVolunteerCount(activityid);
+    }
 }

@@ -83,18 +83,20 @@ pageEncoding="UTF-8"%>
         margin:0 auto;
     }
     .content div{
-        width:20%;
-        height:250px;
-        border-radius:8px;
-        display:inline-block;
-        float:left;
-        background:#fff;
-        margin:10px 0 0 20px;
+        width: 20%;
+        height: 300px;
+        border-radius: 5px;
+        display: inline-block;
+        float: left;
+        background: #fff;
+        margin: 10px 0 0 20px;
+        border: 1px solid #000;
     }
     .content img{
-        width:100%;
-        height:100%;
-        border-radius:8px;
+        width: 85%;
+        height: 62%;
+        border: 1px solid #000;
+        margin: 10px auto;
     }
     .footer{
         width:100%;
@@ -123,9 +125,19 @@ pageEncoding="UTF-8"%>
                 <a href="<%=request.getContextPath()%>/volunteer/login" id="loginOrRegister"><li>登录/注册</li></a>
             </div>
         </div>
-        <div class="content" style="text-align:center;background:#f1f1f1;">
+        <div style="width:1000px;height:40px;margin:0 auto;background:#f1f1f1;">
+            <p style="margin-left:20px;line-height:40px;">欢迎参加志愿者服务平台的活动</p>
+        </div>
+        <div class="content" style="text-align:center;">
             <c:forEach items="${activitys}" var= "activity"  varStatus="status">
-                <a href="<%=request.getContextPath()%>/volunteer/joining?activityId=${activity.activityid}"><div><img src="<%=request.getContextPath()%>/${activity.activityimgpath}" /></div></a>
+                <a href="<%=request.getContextPath()%>/volunteer/joining?activityId=${activity.activityid}">
+                    <div>
+                        <p style="color: #fff;background: #999;border-top-left-radius: 5px;border-top-right-radius: 5px;">${activity.activitydate}</p>
+                        <img src="<%=request.getContextPath()%>/${activity.activityimgpath}" />
+                        <p style="color: #999;text-align: left;margin: 0 15px 10px 15px;font-size: 13px;">${activity.activityname}</p>
+                        <p style="color: #999;font-size: 11px;text-align: left;margin: 0 15px  10px 15px;">目标：${activity.demand}人  报名人数：${activity.volunteerCount}人</p>
+                    </div>
+                </a>
             </c:forEach>
         </div>
         <div class="footer">
