@@ -84,7 +84,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.39</version>
+			<version>1.2.83</version>
 		</dependency>
 		<!--Apache的文件上传 -->
 		<dependency>
